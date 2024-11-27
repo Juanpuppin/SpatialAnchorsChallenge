@@ -80,6 +80,8 @@ public class FreeFlyCamera : MonoBehaviour
 
     #endregion UI
 
+    public Camera CameraRef;
+
     private CursorLockMode _wantedMode;
 
     private float _currentIncrease = 1;
@@ -95,6 +97,19 @@ public class FreeFlyCamera : MonoBehaviour
             _boostedSpeed = _movementSpeed;
     }
 #endif
+
+    private void Awake()
+    {
+        try
+        {
+            CameraRef = GetComponent<Camera>();
+        }
+        catch
+        {
+            Debug.LogError("No camera attached to the FreeFly Camera");
+        }
+       
+    }
 
 
     private void Start()
