@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.PackageManager;
 using UnityEngine;
 using Zenject;
 
@@ -21,12 +22,12 @@ public class AnchorsHandler : MonoBehaviour
 
     private void OnEnable()
     {
-        inputsHandler.OnInstantiateAnchor += InstantiateAnchor;
+        inputsHandler.OnInstantiateAnchor += RaycastCheck;
         freeFlyCamera.OnCameraMove += OnCameraMove;
     }
     private void OnDisable()
     {
-        inputsHandler.OnInstantiateAnchor -= InstantiateAnchor;
+        inputsHandler.OnInstantiateAnchor -= RaycastCheck;
         freeFlyCamera.OnCameraMove -= OnCameraMove;
     }
    
@@ -35,7 +36,7 @@ public class AnchorsHandler : MonoBehaviour
         anchorsFactory = _anchorsFactory;
     }
 
-    private void InstantiateAnchor()
+    private void RaycastCheck()
     {
         if (freeFlyCamera.CameraRef == null) return;
 
@@ -43,13 +44,25 @@ public class AnchorsHandler : MonoBehaviour
 
         if (Physics.Raycast(_ray, out RaycastHit hitInfo))
         {
-            var _anchor = anchorsFactory.Create();
-            _anchor.transform.position = hitInfo.point;
-            _anchor.transform.parent = anchorsParent;
-            _anchor.StoreLocalPosition();
-
-            OnCheckDistances?.Invoke();
+            if (!hitInfo.collider.CompareTag("anchor"))
+            {
+                InstantiateNewAnchor(hitInfo.point);
+            }
+            else
+            {
+                InstantiateNewAnchor(hitInfo.point);
+            }          
         }
+    }
+
+    private void InstantiateNewAnchor(Vector3 _position) 
+    {
+        var _anchor = anchorsFactory.Create();
+        _anchor.transform.position = _position;
+        _anchor.transform.parent = anchorsParent;
+        _anchor.StoreLocalPosition();
+
+        OnCheckDistances?.Invoke();
     }
 
 
@@ -60,6 +73,13 @@ public class AnchorsHandler : MonoBehaviour
         {
             checkInterval = distancesVerificationInterval;
             OnCheckDistances?.Invoke();
+            Invoke("DelayedVerification", checkInterval);
         }
+    }
+
+    /*This might not be super clear, but I'm adding this just to improve the response when there is no key pressed*/
+    private void DelayedVerification() 
+    {
+        OnCheckDistances?.Invoke();
     }
 }

@@ -12,6 +12,7 @@ public class Anchor : MonoBehaviour
     [Inject] private Room room;
     [Inject] private AnchorsHandler anchorsHandler;
     [Inject] private FreeFlyCamera freeFlyCamera;
+    [Inject] private Label label;
 
     //Private
     private Vector3 anchoredPosition;
@@ -72,7 +73,5 @@ public class Anchor : MonoBehaviour
         {
             meshRender.material.color = Color.red;           
         }
-
-        Debug.Log("Verification");
     }
 }

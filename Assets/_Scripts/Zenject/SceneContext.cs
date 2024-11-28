@@ -6,6 +6,7 @@ public class SceneContext : MonoInstaller
 {
     public GameObject FreeFlyCamera;
     public GameObject Room;
+    public GameObject Label;
 
     public override void InstallBindings()
     {
@@ -14,5 +15,6 @@ public class SceneContext : MonoInstaller
 
         Container.Bind<FreeFlyCamera>().FromComponentOn(FreeFlyCamera).AsSingle().NonLazy();
         Container.Bind<Room>().FromComponentOn(Room).AsSingle().NonLazy();
+        Container.Bind<Label>().FromComponentOn(Label).AsSingle().NonLazy();
     }
 }
