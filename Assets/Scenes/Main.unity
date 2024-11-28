@@ -982,6 +982,7 @@ GameObject:
   - component: {fileID: 235191262}
   - component: {fileID: 235191261}
   - component: {fileID: 235191260}
+  - component: {fileID: 235191263}
   m_Layer: 5
   m_Name: Cancel (Button)
   m_TagString: Untagged
@@ -1091,6 +1092,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 235191258}
   m_CullTransparentMesh: 1
+--- !u!114 &235191263
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235191258}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7259b80596582034783103c3335d7bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasName: HUD
+  activate: 0
 --- !u!1 &287429562
 GameObject:
   m_ObjectHideFlags: 0
@@ -1311,6 +1326,7 @@ GameObject:
   - component: {fileID: 353726991}
   - component: {fileID: 353726990}
   - component: {fileID: 353726989}
+  - component: {fileID: 353726992}
   m_Layer: 5
   m_Name: Anchor Reach (Canvas)
   m_TagString: Untagged
@@ -1402,6 +1418,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &353726992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 353726987}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefdf540c29c6fb41875d87749b6fc99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasName: AnchorReach
+  neverDeativate: 0
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0
@@ -1746,14 +1776,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -2229,6 +2259,7 @@ GameObject:
   - component: {fileID: 873497748}
   - component: {fileID: 873497747}
   - component: {fileID: 873497746}
+  - component: {fileID: 873497749}
   m_Layer: 5
   m_Name: Apply (Button)
   m_TagString: Untagged
@@ -2338,6 +2369,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 873497744}
   m_CullTransparentMesh: 1
+--- !u!114 &873497749
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 873497744}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7259b80596582034783103c3335d7bea, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvasName: HUD
+  activate: 0
 --- !u!1 &928555832
 GameObject:
   m_ObjectHideFlags: 0
@@ -2350,6 +2395,7 @@ GameObject:
   - component: {fileID: 928555836}
   - component: {fileID: 928555835}
   - component: {fileID: 928555834}
+  - component: {fileID: 928555837}
   m_Layer: 5
   m_Name: HUD (Canvas)
   m_TagString: Untagged
@@ -2441,6 +2487,20 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &928555837
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 928555832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefdf540c29c6fb41875d87749b6fc99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasName: HUD
+  neverDeativate: 0
 --- !u!1 &957579254
 GameObject:
   m_ObjectHideFlags: 0
@@ -3632,13 +3692,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.5
-  m_fontSizeBase: 16.5
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3789,13 +3849,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.5
-  m_fontSizeBase: 16.5
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -3989,8 +4049,10 @@ GameObject:
   - component: {fileID: 1621369092}
   - component: {fileID: 1621369091}
   - component: {fileID: 1621369090}
+  - component: {fileID: 1621369093}
+  - component: {fileID: 1621369094}
   m_Layer: 5
-  m_Name: RoomSizeModal (Canvas)
+  m_Name: Room Dimenstions (Canvas)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4080,6 +4142,35 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
+--- !u!114 &1621369093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621369088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aefdf540c29c6fb41875d87749b6fc99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanvasName: RoomSize
+  neverDeativate: 0
+--- !u!114 &1621369094
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1621369088}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78ea95ca1cad2b04cbb39db316725654, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  applyButton: {fileID: 873497746}
+  width: {fileID: 443992212}
+  length: {fileID: 1664372916}
 --- !u!1 &1621432738
 GameObject:
   m_ObjectHideFlags: 0
@@ -4242,14 +4333,14 @@ MonoBehaviour:
   m_VerticalScrollbarEventHandler: {fileID: 0}
   m_LayoutGroup: {fileID: 0}
   m_ScrollSensitivity: 1
-  m_ContentType: 0
+  m_ContentType: 2
   m_InputType: 0
   m_AsteriskChar: 42
-  m_KeyboardType: 0
+  m_KeyboardType: 4
   m_LineType: 0
   m_HideMobileInput: 0
   m_HideSoftKeyboard: 0
-  m_CharacterValidation: 0
+  m_CharacterValidation: 2
   m_RegexValue: 
   m_GlobalPointSize: 14
   m_CharacterLimit: 0
@@ -4919,13 +5010,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.5
-  m_fontSizeBase: 16.5
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 2
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5393,13 +5484,13 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 16.5
-  m_fontSizeBase: 16.5
+  m_fontSize: 25
+  m_fontSizeBase: 25
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
   m_fontSizeMax: 72
-  m_fontStyle: 0
+  m_fontStyle: 1
   m_HorizontalAlignment: 1
   m_VerticalAlignment: 512
   m_textAlignment: 65535
@@ -5506,6 +5597,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2135458462}
+  - component: {fileID: 2135458463}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -5531,6 +5623,18 @@ Transform:
   - {fileID: 353726988}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2135458463
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2135458461}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7112357f2c7a111468aa44d787193cd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1256964728540082092
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5698,6 +5802,18 @@ PrefabInstance:
     - target: {fileID: 3767311615334022252, guid: e4eb54c0e0f7bf842b42104bbcace2b6, type: 3}
       propertyPath: m_TagString
       value: surface
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507753078188401683, guid: e4eb54c0e0f7bf842b42104bbcace2b6, type: 3}
+      propertyPath: tilesResolution
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507753078188401683, guid: e4eb54c0e0f7bf842b42104bbcace2b6, type: 3}
+      propertyPath: roomDimensions.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507753078188401683, guid: e4eb54c0e0f7bf842b42104bbcace2b6, type: 3}
+      propertyPath: roomDimensions.y
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 7518890459947899169, guid: e4eb54c0e0f7bf842b42104bbcace2b6, type: 3}
       propertyPath: m_Name

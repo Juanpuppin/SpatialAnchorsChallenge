@@ -12,6 +12,7 @@ public class SceneContext : MonoInstaller
     {
         Container.Bind<InputsHandler>().FromComponentInHierarchy().AsSingle().NonLazy();
         Container.Bind<AnchorsHandler>().FromComponentInHierarchy().AsSingle().NonLazy();
+        Container.Bind<CanvasHandler>().FromComponentInHierarchy().AsSingle().NonLazy();
 
         Container.Bind<FreeFlyCamera>().FromComponentOn(FreeFlyCamera).AsSingle().NonLazy();
         Container.Bind<Room>().FromComponentOn(Room).AsSingle().NonLazy();

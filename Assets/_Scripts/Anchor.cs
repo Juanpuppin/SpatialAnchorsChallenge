@@ -45,7 +45,7 @@ public class Anchor : MonoBehaviour
 
     private void UpdateAnchorPosition(Vector2 _roomDimensions)
     {
-        Vector3 _newPosition = new Vector3(anchoredPosition.x * _roomDimensions.x, anchoredPosition.y, anchoredPosition.z * _roomDimensions.y);
+        Vector3 _newPosition = new Vector3(anchoredPosition.x * (_roomDimensions.x/10), anchoredPosition.y, anchoredPosition.z * (_roomDimensions.y/10));
         transform.localPosition = _newPosition;
     } 
 
