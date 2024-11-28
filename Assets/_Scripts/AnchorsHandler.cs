@@ -9,7 +9,9 @@ public class AnchorsHandler : MonoBehaviour
     [Inject] private AnchorsFactory anchorsFactory;
     [Inject] private readonly InputsHandler inputsHandler;
     [Inject] private readonly FreeFlyCamera freeFlyCamera;
-    [Inject] private Label label;
+    [Inject] private readonly Label label;
+    [Inject] private AnchorReachCanvas anchorReach;
+    [Inject] private CanvasHandler canvasHandler;
 
     //Visible in the Inspector
     [SerializeField] private Transform anchorsParent;
@@ -52,8 +54,9 @@ public class AnchorsHandler : MonoBehaviour
             anchor.transform.position = hitInfo.point;
             anchor.transform.parent = anchorsParent;
             anchor.StoreLocalPosition();
-
-            OnCheckDistances?.Invoke();
+            
+            canvasHandler.ToggleCanvas("AnchorReach", true);
+            anchorReach.SetAnchorReach(anchor);
         }
     }
 

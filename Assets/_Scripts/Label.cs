@@ -9,7 +9,8 @@ public class Label : MonoBehaviour
 
     //View in inspector
     [SerializeField] GameObject label;
-    [SerializeField] TextMeshPro labelText;
+    [SerializeField] TextMeshPro distanceText;
+    [SerializeField] TextMeshPro reachText;
     [SerializeField] Vector3 positionOffset;
 
     //private
@@ -45,6 +46,8 @@ public class Label : MonoBehaviour
         float distanceInMeters = selectedAnchor.Distance; // Assuming distance is in meters.
         string formattedDistance;
 
+        reachText.text = "Reach: " + selectedAnchor.AnchorReach + "m";
+
         if (distanceInMeters < 1.0f)
         {
             // centimeter
@@ -56,7 +59,7 @@ public class Label : MonoBehaviour
             formattedDistance = distanceInMeters.ToString("F2") + " m";
         }
 
-        labelText.text = formattedDistance;
+        distanceText.text = "Distance: " + formattedDistance;
     }
 
     public void UpdateLabelPosition(Anchor _anchor)

@@ -21,6 +21,7 @@ public class Anchor : MonoBehaviour
 
     //Public
     public float Distance;
+    public float AnchorReach = 10;
 
     private void OnEnable()
     {
@@ -53,7 +54,7 @@ public class Anchor : MonoBehaviour
     {
         distanceFromPlayer = CalculateDistanceFromPlayer();
 
-        if (CurrentNearestAnchor == null || distanceFromPlayer < CurrentNearestAnchor.distanceFromPlayer)
+        if (CurrentNearestAnchor == null || distanceFromPlayer < CurrentNearestAnchor.distanceFromPlayer & distanceFromPlayer < AnchorReach)
         {
             CurrentNearestAnchor = this;
             OnAnchorChange?.Invoke();
