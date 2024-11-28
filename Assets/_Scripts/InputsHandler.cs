@@ -6,8 +6,9 @@ public class InputsHandler : MonoBehaviour
     public event Action OnInstantiateAnchor;
 
     private void Update()
-    {       
-        if (Input.GetMouseButtonDown(0))
+    {    
+        // Instantiate Anchors
+        if (Input.GetKeyDown(KeyCode.F))
         {
             OnInstantiateAnchor?.Invoke();
         }

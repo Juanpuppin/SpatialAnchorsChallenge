@@ -3,6 +3,7 @@
 //                        (c) 2019 Sergey Stafeyev                           //
 //===========================================================================//
 
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Camera))]
@@ -89,6 +90,8 @@ public class FreeFlyCamera : MonoBehaviour
 
     private Vector3 _initPosition;
     private Vector3 _initRotation;
+
+    public event Action OnCameraMove;
 
 #if UNITY_EDITOR
     private void OnValidate()
@@ -183,22 +186,40 @@ public class FreeFlyCamera : MonoBehaviour
                 currentSpeed = _boostedSpeed;
 
             if (Input.GetKey(KeyCode.W))
+            {
                 deltaPosition += transform.forward;
+                OnCameraMove?.Invoke();
+            }
 
             if (Input.GetKey(KeyCode.S))
+            {
                 deltaPosition -= transform.forward;
+                OnCameraMove?.Invoke();
+            }
 
             if (Input.GetKey(KeyCode.A))
+            {
                 deltaPosition -= transform.right;
+                OnCameraMove?.Invoke();
+            }
 
             if (Input.GetKey(KeyCode.D))
+            {
                 deltaPosition += transform.right;
+                OnCameraMove?.Invoke();
+            }
 
             if (Input.GetKey(_moveUp))
+            {
                 deltaPosition += transform.up;
+                OnCameraMove?.Invoke();
+            }
 
             if (Input.GetKey(_moveDown))
+            {
                 deltaPosition -= transform.up;
+                OnCameraMove?.Invoke();
+            }          
 
             // Calc acceleration
             CalculateCurrentIncrease(deltaPosition != Vector3.zero);
