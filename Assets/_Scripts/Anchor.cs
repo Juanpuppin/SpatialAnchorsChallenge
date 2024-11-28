@@ -5,19 +5,22 @@ using Zenject;
 
 public class Anchor : MonoBehaviour
 {
+    //static
     private static event Action OnAnchorChange;
-    private static Anchor CurrentNearestAnchor;
+    public static Anchor CurrentNearestAnchor;
 
     //Inject
     [Inject] private Room room;
     [Inject] private AnchorsHandler anchorsHandler;
     [Inject] private FreeFlyCamera freeFlyCamera;
-    [Inject] private Label label;
 
     //Private
     private Vector3 anchoredPosition;
     private float distanceFromPlayer;
     private MeshRenderer meshRender;
+
+    //Public
+    public float Distance;
 
     private void OnEnable()
     {
@@ -59,8 +62,8 @@ public class Anchor : MonoBehaviour
 
     private float CalculateDistanceFromPlayer() 
     {
-        float _distance = Vector3.Distance(transform.position, freeFlyCamera.transform.position);        
-        return _distance;
+        Distance = Vector3.Distance(transform.position, freeFlyCamera.transform.position);        
+        return Distance;
     }
 
     private void ToggleColor()

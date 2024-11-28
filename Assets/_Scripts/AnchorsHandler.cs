@@ -9,6 +9,7 @@ public class AnchorsHandler : MonoBehaviour
     [Inject] private AnchorsFactory anchorsFactory;
     [Inject] private readonly InputsHandler inputsHandler;
     [Inject] private readonly FreeFlyCamera freeFlyCamera;
+    [Inject] private Label label;
 
     //Visible in the Inspector
     [SerializeField] private Transform anchorsParent;
@@ -16,18 +17,19 @@ public class AnchorsHandler : MonoBehaviour
 
     //Private
     private float checkInterval;
+    private float checkTime;
 
     //Public
     public event Action OnCheckDistances;
 
     private void OnEnable()
     {
-        inputsHandler.OnInstantiateAnchor += RaycastCheck;
+        inputsHandler.OnInstantiateAnchor += InstantiateNewAnchor;
         freeFlyCamera.OnCameraMove += OnCameraMove;
     }
     private void OnDisable()
     {
-        inputsHandler.OnInstantiateAnchor -= RaycastCheck;
+        inputsHandler.OnInstantiateAnchor -= InstantiateNewAnchor;
         freeFlyCamera.OnCameraMove -= OnCameraMove;
     }
    
@@ -36,50 +38,53 @@ public class AnchorsHandler : MonoBehaviour
         anchorsFactory = _anchorsFactory;
     }
 
-    private void RaycastCheck()
+
+    private void Update()
     {
-        if (freeFlyCamera.CameraRef == null) return;
+        PlaceLabel();
+    }
 
-        Ray _ray = freeFlyCamera.CameraRef.ScreenPointToRay(Input.mousePosition);
-
-        if (Physics.Raycast(_ray, out RaycastHit hitInfo))
+    private void InstantiateNewAnchor()
+    {
+        if (RaycastCheck(out RaycastHit hitInfo) && hitInfo.collider.CompareTag("surface"))
         {
-            if (!hitInfo.collider.CompareTag("anchor"))
+            var anchor = anchorsFactory.Create();
+            anchor.transform.position = hitInfo.point;
+            anchor.transform.parent = anchorsParent;
+            anchor.StoreLocalPosition();
+
+            OnCheckDistances?.Invoke();
+        }
+    }
+
+    private void PlaceLabel()
+    {
+        if (RaycastCheck(out RaycastHit hitInfo))
+        {
+            if (hitInfo.collider.CompareTag("anchor"))
             {
-                InstantiateNewAnchor(hitInfo.point);
+                label.UpdateLabelPosition(hitInfo.collider.GetComponent<Anchor>());
             }
             else
             {
-                InstantiateNewAnchor(hitInfo.point);
-            }          
+                label.DeactivateLabel();
+            }
         }
     }
-
-    private void InstantiateNewAnchor(Vector3 _position) 
-    {
-        var _anchor = anchorsFactory.Create();
-        _anchor.transform.position = _position;
-        _anchor.transform.parent = anchorsParent;
-        _anchor.StoreLocalPosition();
-
-        OnCheckDistances?.Invoke();
-    }
-
 
     private void OnCameraMove()
     {
-        checkInterval -= Time.deltaTime;
-        if (checkInterval <= 0f)
+        checkTime += Time.deltaTime;
+        if (checkTime >= distancesVerificationInterval)
         {
-            checkInterval = distancesVerificationInterval;
+            checkTime = 0f;
             OnCheckDistances?.Invoke();
-            Invoke("DelayedVerification", checkInterval);
         }
     }
 
-    /*This might not be super clear, but I'm adding this just to improve the response when there is no key pressed*/
-    private void DelayedVerification() 
+    private bool RaycastCheck(out RaycastHit hitInfo)
     {
-        OnCheckDistances?.Invoke();
+        Ray ray = freeFlyCamera.CameraRef.ScreenPointToRay(Input.mousePosition);
+        return Physics.Raycast(ray, out hitInfo);
     }
 }
