@@ -18,7 +18,6 @@ public class AnchorsHandler : MonoBehaviour
     [SerializeField] private float distancesVerificationInterval = 0.5f;
 
     //Private
-    private float checkInterval;
     private float checkTime;
 
     //Public
@@ -34,12 +33,12 @@ public class AnchorsHandler : MonoBehaviour
         inputsHandler.OnInstantiateAnchor -= InstantiateNewAnchor;
         freeFlyCamera.OnCameraMove -= OnCameraMove;
     }
-   
-    [Inject] public void Construct(AnchorsFactory _anchorsFactory)
+
+    [Inject]
+    public void Construct(AnchorsFactory _anchorsFactory)
     {
         anchorsFactory = _anchorsFactory;
     }
-
 
     private void Update()
     {
@@ -48,13 +47,13 @@ public class AnchorsHandler : MonoBehaviour
 
     private void InstantiateNewAnchor()
     {
-        if (RaycastCheck(out RaycastHit hitInfo) && hitInfo.collider.CompareTag("surface"))
+        if (RaycastCheck(out RaycastHit _hitInfo) && _hitInfo.collider.CompareTag("surface"))
         {
             var anchor = anchorsFactory.Create();
-            anchor.transform.position = hitInfo.point;
+            anchor.transform.position = _hitInfo.point;
             anchor.transform.parent = anchorsParent;
             anchor.StoreLocalPosition();
-            
+
             canvasHandler.ToggleCanvas("AnchorReach", true);
             anchorReach.SetAnchorReach(anchor);
         }
@@ -62,11 +61,11 @@ public class AnchorsHandler : MonoBehaviour
 
     private void PlaceLabel()
     {
-        if (RaycastCheck(out RaycastHit hitInfo))
+        if (RaycastCheck(out RaycastHit _hitInfo))
         {
-            if (hitInfo.collider.CompareTag("anchor"))
+            if (_hitInfo.collider.CompareTag("anchor"))
             {
-                label.UpdateLabelPosition(hitInfo.collider.GetComponent<Anchor>());
+                label.UpdateLabelPosition(_hitInfo.collider.GetComponent<Anchor>());
             }
             else
             {
@@ -85,9 +84,9 @@ public class AnchorsHandler : MonoBehaviour
         }
     }
 
-    private bool RaycastCheck(out RaycastHit hitInfo)
+    private bool RaycastCheck(out RaycastHit _hitInfo)
     {
         Ray ray = freeFlyCamera.CameraRef.ScreenPointToRay(Input.mousePosition);
-        return Physics.Raycast(ray, out hitInfo);
+        return Physics.Raycast(ray, out _hitInfo);
     }
 }

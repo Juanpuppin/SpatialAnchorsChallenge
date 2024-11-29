@@ -1,20 +1,21 @@
 using System;
 using UnityEngine;
 using Zenject;
-
+using TMPro;
 public class Room : MonoBehaviour
 {
-    // Show in inspector  
+    //Public
+    public event Action<Vector2> OnUpdateRoomDimensions;
+    public Vector2 roomDimensions = new Vector2(10, 10);
+
+    // Show in inspector
     [Header("Tiles")]   
     [SerializeField] private int tilesResolution = 1;
     [Space]
     [SerializeField] private MeshRenderer floor;
     [SerializeField] private MeshRenderer[] frontAndBackWalls = null;
-    [SerializeField] private MeshRenderer[] leftAndRightWalls = null; 
+    [SerializeField] private MeshRenderer[] leftAndRightWalls = null;
 
-    //Public
-    public event Action<Vector2> OnUpdateRoomDimensions;
-    public Vector2 roomDimensions = new Vector2(10, 10);
 
     //Private
     private float resolutionAdjustment = 2;
@@ -24,7 +25,7 @@ public class Room : MonoBehaviour
         UpdateRoomDimensions();
     }
 
-    [EditorCools.Button]
+    [EditorCools.Button(space:5)]
     public void UpdateRoomDimensions() 
     {
         transform.localScale = new Vector3(roomDimensions.x / 10, transform.localScale.y, roomDimensions.y / 10);
